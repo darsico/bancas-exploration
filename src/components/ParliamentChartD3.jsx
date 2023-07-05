@@ -4,13 +4,21 @@ import * as d3 from 'd3';
 import { parliamentChart } from 'd3-parliament-chart';
 import './parliamentChartD3.css';
 
-const ParliamentChart = ({ data: inputData, totalSeats }) => {
+const ParliamentChart = ({ data: inputData, totalSeats = false }) => {
   const chartRef = useRef(null);
   const legendRef = useRef(null);
 
   const createParliamentChart = (container, data) => {
     return parliamentChart().width(800).aggregatedData(data).sections(2).seatRadius(10).sectionGap(4).rowHeight(42);
   };
+
+  const getTotalSeats = (data) => {
+    return data.reduce((accumulator, party) => {
+      return accumulator + party.seats;
+    }, 0);
+  };
+
+  const totalSeatsAvailable = totalSeats || getTotalSeats(inputData);
 
   const appendChart = (container, chart) => {
     container.append('g').call(chart);
@@ -99,7 +107,7 @@ const ParliamentChart = ({ data: inputData, totalSeats }) => {
         <svg id="pchart" ref={chartRef} width="100%" viewBox="0 0 800 500" />
 
         <div className="total-seats-ctn">
-          <span className="total-seats-value">256</span>
+          <span className="total-seats-value">{totalSeatsAvailable}</span>
           <span className="total-seats-text">Bancas totales</span>
         </div>
       </div>
