@@ -11,8 +11,6 @@ HighchartsExporting(Highcharts);
 HighchartsExportData(Highcharts);
 HighchartsAccessibility(Highcharts);
 
-// const totalCandidates = 256;
-
 const renderCustomText = (chart, totalCandidates) => {
   const centerX = chart.plotWidth / 1.99;
   const centerY2 = chart.plotHeight / 1.2;
@@ -26,7 +24,7 @@ const renderCustomText = (chart, totalCandidates) => {
 };
 
 const getHighchartsOptions = (inputData, totalSeats) => {
-  const highchartsOptions = {
+  return {
     chart: {
       type: 'item',
       events: {
@@ -48,7 +46,6 @@ const getHighchartsOptions = (inputData, totalSeats) => {
     },
     credits: false,
     exporting: false,
-
     plotOptions: {
       item: {
         marker: {
@@ -58,7 +55,6 @@ const getHighchartsOptions = (inputData, totalSeats) => {
         innerSize: '25%', // Set the innerSize property to 30% (smaller circles in the center)
       },
     },
-
     series: [
       {
         name: 'Representatives',
@@ -94,25 +90,20 @@ const getHighchartsOptions = (inputData, totalSeats) => {
       ],
     },
   };
-
-  return highchartsOptions;
 };
 
 const HighchartsComponent = ({ data = [], totalSeats = false }) => {
   const processedData = useMemo(() => {
-    const formatted = data.map((party) => [party.name, party.seats, party.color]);
-    return formatted;
+    return data.map((party) => [party.name, party.seats, party.color]);
   }, [data]);
 
-  const getTotalSeats = (processedData) => {
-    const totalSeats = processedData.reduce((accumulator, party) => {
+  const getTotalSeats = () => {
+    return processedData.reduce((accumulator, party) => {
       return accumulator + party[1]; // Assuming the seat count is at index 1
     }, 0);
-
-    return totalSeats;
   };
 
-  const totalSeatsAvailable = totalSeats || getTotalSeats(processedData);
+  const totalSeatsAvailable = totalSeats || getTotalSeats();
 
   useEffect(() => {
     const chart = Highcharts.chart('container', getHighchartsOptions(processedData, totalSeatsAvailable));
