@@ -1,0 +1,84 @@
+#root {
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.chart-ctn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.parliament-chart > circle {
+  transition: all 0.2s;
+}
+
+.chart-legend-ctn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-self: center;
+  z-index: 999;
+  justify-content: center;
+}
+
+.legend-item {
+  background: none;
+  border-radius: 9px;
+  display: flex;
+  padding: 6px 12px;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.legend-item-party-text {
+  margin: 0;
+}
+
+.legend-item-party-seats-qty {
+  font-weight: 500;
+}
+
+.total-seats-ctn {
+  position: absolute;
+  bottom: 20%;
+  left: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.total-seats-value {
+  color: #1f1f1f;
+  text-align: center;
+  font-size: 22px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+}
+.total-seats-text {
+  color: #3b3b3b;
+  text-align: center;
+  font-size: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 130%;
+}
+
+@media screen and (min-width: 577px) {
+  .chart-legend-ctn {
+    margin-top: -66px;
+    max-width: 570px;
+  }
+
+  .total-seats-ctn {
+    left: 45%;
+  }
+  .total-seats-value {
+    font-size: 80px;
+  }
+  .total-seats-text {
+    font-size: 22px;
+  }
+}

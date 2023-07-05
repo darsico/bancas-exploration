@@ -1,0 +1,56 @@
+/* .parliament-total-seats {
+  color: #1f1f1f;
+  text-align: center;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+}
+
+.parliament-total-seats-text {
+  font-size: 12px;
+  font-weight: 300;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.label-ctn-button {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.color-rect {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+.label-y {
+  font-weight: 500;
+}
+
+
+@media screen and (min-width: 577px) {
+  .parliament-total-seats {
+    font-size: 40px;
+  }
+
+  .parliament-total-seats-text {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .parliament-total-seats {
+    font-size: 80px;
+  }
+
+  .parliament-total-seats-text {
+    font-size: 22px;
+  }
+} */
