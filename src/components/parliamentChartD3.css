@@ -149,4 +149,8 @@
   .border {
     height: 78%;
   }
+
+  .legend-item {
+    font-size: 14px;
+  }
 }
