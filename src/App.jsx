@@ -35,12 +35,9 @@ function App() {
     },
   ];
   return (
-    <>
-      <h1>Vite + React</h1>
       <div className="card">
         <ParliamentChartD3 data={data} />
       </div>
-    </>
   );
 }
 

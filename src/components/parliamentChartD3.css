@@ -1,15 +1,13 @@
 #root {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
 }
 
 .chart-ctn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin: 0 auto;
 }
 
-.parliament-chart > circle {
+.parliament-chart>circle {
   transition: all 0.2s;
 }
 
@@ -20,6 +18,7 @@
   align-self: center;
   z-index: 999;
   justify-content: center;
+  margin-top: -17px;
 }
 
 .legend-item {
@@ -42,11 +41,15 @@
 
 .total-seats-ctn {
   position: absolute;
-  bottom: 20%;
-  left: 40%;
+  top: 60%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
   display: flex;
   flex-direction: column;
 }
+
 .total-seats-value {
   color: #1f1f1f;
   text-align: center;
@@ -56,6 +59,7 @@
   font-weight: 700;
   line-height: 130%;
 }
+
 .total-seats-text {
   color: #3b3b3b;
   text-align: center;
@@ -66,21 +70,46 @@
   line-height: 130%;
 }
 
+@media screen and (min-width: 520px) {
+  .total-seats-ctn {
+    top: 65%;
+  }
+}
+
+@media screen and (min-width: 577px) {
+  .total-seats-ctn {
+    top: 60%;
+  }
+
+  .total-seats-value {
+    font-size: 42px;
+  }
+}
+
 @media screen and (min-width: 768px) {
+  .total-seats-ctn {
+    top: 60%;
+  }
+
+  .total-seats-value {
+    font-size: 62px;
+  }
 }
 
 @media screen and (min-width: 992px) {
   .chart-legend-ctn {
-    margin-top: -66px;
-    max-width: 570px;
+    margin-top: -54px;
+    /* max-width: 570px; */
   }
 
   .total-seats-ctn {
-    left: 45%;
+    top: 59%;
   }
+
   .total-seats-value {
     font-size: 80px;
   }
+
   .total-seats-text {
     font-size: 22px;
   }
