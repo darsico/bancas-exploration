@@ -9,7 +9,7 @@ const ParliamentChart = ({ data: inputData, totalSeats = 257 }) => {
   const legendRef = useRef(null);
 
   const createParliamentChart = (container, data) => {
-    return parliamentChart().width(800).aggregatedData(data).sections(2).seatRadius(11).sectionGap(4).rowHeight(38).debug(true);
+    return parliamentChart().width(800).aggregatedData(data).sections(2).seatRadius(11).sectionGap(4).rowHeight(38);
   };
 
   const appendChart = (container, chart) => {
@@ -127,9 +127,10 @@ const ParliamentChart = ({ data: inputData, totalSeats = 257 }) => {
 
   return (
     <div style={{ maxWidth: 1028 }} className="chart-ctn">
-      <div style={{ position: 'relative' }}>
+      <div className="container" style={{ position: 'relative' }}>
         <svg id="pchart" ref={chartRef} width="100%" viewBox="0 0 800 500" />
 
+        <div className="border"></div>
         <div className="total-seats-ctn">
           <span className="total-seats-value">{totalSeats}</span>
           <span className="total-seats-text">Bancas totales</span>
