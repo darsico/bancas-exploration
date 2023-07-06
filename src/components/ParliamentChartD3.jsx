@@ -4,21 +4,13 @@ import * as d3 from 'd3';
 import { parliamentChart } from 'd3-parliament-chart';
 import './parliamentChartD3.css';
 
-const ParliamentChart = ({ data: inputData, totalSeats = false }) => {
+const ParliamentChart = ({ data: inputData, totalSeats = 257 }) => {
   const chartRef = useRef(null);
   const legendRef = useRef(null);
 
   const createParliamentChart = (container, data) => {
-    return parliamentChart().width(800).aggregatedData(data).sections(2).seatRadius(10).sectionGap(4).rowHeight(42);
+    return parliamentChart().width(800).aggregatedData(data).sections(2).seatRadius(11).sectionGap(4).rowHeight(38).debug(true);
   };
-
-  const getTotalSeats = (data) => {
-    return data.reduce((accumulator, party) => {
-      return accumulator + party.seats;
-    }, 0);
-  };
-
-  const totalSeatsAvailable = totalSeats || getTotalSeats(inputData);
 
   const appendChart = (container, chart) => {
     container.append('g').call(chart);
@@ -87,6 +79,34 @@ const ParliamentChart = ({ data: inputData, totalSeats = false }) => {
     }));
   };
 
+  const calculateRadio = (chartContainer, data) => {
+    const centerX = 400;
+    const centerY = 400;
+    const sizeMin = 4; // ajusta según el size mínimo deseado
+    const sizeMedium = 6;
+    const sizeMediumMax = 7;
+    const sizeMax = 9;
+
+    chartContainer.selectAll('circle').attr('r', function () {
+      const circleRatio = d3.select(this);
+      const circleX = circleRatio._groups[0][0].__data__.x;
+      const circleY = circleRatio._groups[0][0].__data__.y;
+      const distance = Math.sqrt(Math.pow(circleX - centerX, 2) + Math.pow(circleY - centerY, 2));
+
+      if (distance <= 200) {
+        return sizeMin;
+      } else if (distance > 200 && distance <= 300) {
+        return sizeMedium;
+      } else if (distance > 300 && distance <= 350) {
+        return sizeMediumMax;
+      } else {
+        return sizeMax;
+      }
+    });
+  };
+
+  const getDimensions = () => {};
+
   useEffect(() => {
     const chartContainer = d3.select(chartRef.current);
     const legendContainer = d3.select(legendRef.current);
@@ -96,9 +116,13 @@ const ParliamentChart = ({ data: inputData, totalSeats = false }) => {
     const chart = createParliamentChart(chartContainer, data);
 
     appendChart(chartContainer, chart);
+
     generateLegend(legendContainer, data);
+
     addHoverInteraction(chartContainer, legendContainer, data);
     addHoverInteractionOnCircles(chartContainer, data);
+
+    calculateRadio(chartContainer, data);
   }, []);
 
   return (
@@ -107,7 +131,7 @@ const ParliamentChart = ({ data: inputData, totalSeats = false }) => {
         <svg id="pchart" ref={chartRef} width="100%" viewBox="0 0 800 500" />
 
         <div className="total-seats-ctn">
-          <span className="total-seats-value">{totalSeatsAvailable}</span>
+          <span className="total-seats-value">{totalSeats}</span>
           <span className="total-seats-text">Bancas totales</span>
         </div>
       </div>

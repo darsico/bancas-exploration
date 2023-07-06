@@ -66,7 +66,10 @@
   line-height: 130%;
 }
 
-@media screen and (min-width: 577px) {
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 992px) {
   .chart-legend-ctn {
     margin-top: -66px;
     max-width: 570px;
